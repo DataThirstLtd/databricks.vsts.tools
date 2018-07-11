@@ -11,7 +11,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+*/ps_modules/*
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

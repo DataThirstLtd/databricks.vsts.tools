@@ -1,0 +1,50 @@
+{
+    "manifestVersion": 1,
+    "id": "databricksDeployScriptsTasks",
+    "name": "Databricks Script Deployment Task by Data Thirst",
+    "version": "0.2.9",
+    "publisher": "DataThirstLtd",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Tools for deploying Databricks scripts & other objects",
+    "overview": "This is a test",
+    "categories": [
+        "Build and release"
+    ],
+    "icons": {
+        "default": "images/logo.png"        
+    },
+    "files": [
+        {
+            "path": "deployScriptsTask"
+        },
+        {
+            "path": "deploySecretTask"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "databricksDeployScriptsTask",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "deployScriptsTask"
+            }
+        },
+        {
+            "id": "databricksDeploySecretTask",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "deploySecretTask"
+            }
+        }
+    ]
+}
