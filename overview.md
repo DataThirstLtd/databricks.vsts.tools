@@ -1,6 +1,12 @@
 
 # Deploying to Databricks
 
+## Process
+![Adding Tasks](overviewimages/process.png)
+
+
+# VSTS Tasks
+
 ## Add task
 Your will find the new Tasks available under the Deploy tab, or search for Databricks:
 ![Adding Tasks](overviewimages/addingTasks.png)
@@ -26,8 +32,8 @@ Use this to deploy a folder of scripts from your repo to your Databricks Workspa
 - Secret Name - The Key name
 - Secret Value - Your secret value such as a password or key
 
-## Bulk Export Scripts from your Workspace
-PLease see the PowerShell module: https://github.com/DataThirstLtd/azure.databricks.cicd.tools
+# Bulk Export Scripts from your Workspace
+Please see the PowerShell module: https://github.com/DataThirstLtd/azure.databricks.cicd.tools
 
-## Libraries, Clusters & Jobs
+# Libraries, Clusters & Jobs
 Coming Soon
