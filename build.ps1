@@ -13,7 +13,7 @@ Function DownloadModules($TaskFolder, $ModuleName){
 
     Save-Module -Name $ModuleName -Path $TaskModuleFolder
 
-    Get-ChildItem $TaskModuleFolder\$ModuleName\*\* | % { 
+    Get-ChildItem $TaskModuleFolder\$ModuleName\*\* | % {
         Move-Item -Path $_.FullName -Destination $TaskModuleFolder\$ModuleName\
     }
 }
