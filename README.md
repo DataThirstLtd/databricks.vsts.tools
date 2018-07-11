@@ -7,7 +7,7 @@ See marketplace https://marketplace.visualstudio.com/items?itemName=DataThirstLt
 Based upon PowerShell module available here: https://github.com/DataThirstLtd/azure.databricks.cicd.tools
 
 # Deploy Scripts
-This Task can deploy a folder of scripts from your repo/build into your Databricks Workspace. It assume the files have been exported in "Source" format and are either Python (py), Scala, SQL or R files.
+This Task can deploy a folder of scripts from your repo/build into your Databricks Workspace. It assumes the files have been exported in "Source" format and are either Python (py), Scala, SQL or R files.
 
 To export your scripts in bulk in the correct format see the link to the PowerShell module above and the Export function within it.
 
