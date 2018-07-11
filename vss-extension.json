@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "databricksDeployScriptsTasks",
     "name": "Databricks Script Deployment Task by Data Thirst",
-    "version": "0.2.9",
+    "version": "0.2.10",
     "publisher": "DataThirstLtd",
     "targets": [
         {
@@ -10,19 +10,56 @@
         }
     ],    
     "description": "Tools for deploying Databricks scripts & other objects",
-    "overview": "This is a test",
+    "tags": [
+        "Extension",
+        "Marketplace",
+        "DevOps",
+        "Deploy",
+        "Databricks",
+        "Azure",
+        "Continuous Integration",
+        "Continuous Delivery",
+        "Build",
+        "Release"
+      ],
     "categories": [
         "Build and release"
     ],
+    "content": {
+        "details": {
+        "path": "overview.md"
+        }
+    },
+    "links": {
+        "repository": {
+          "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools"
+        },
+        "issues": {
+          "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools/issues"
+        },
+        "support": {
+          "uri": "mailto:hello@datathirst.net"
+        }
+      },
     "icons": {
         "default": "images/logo.png"        
     },
+    "screenshots": [
+        {
+            "path": "overviewimages/addingTasks.png"
+        }
+    ],
+    "public": false,
     "files": [
         {
             "path": "deployScriptsTask"
         },
         {
             "path": "deploySecretTask"
+        },
+        {
+            "path": "overviewimages",
+            "addressable": true
         }
     ],
     "contributions": [
