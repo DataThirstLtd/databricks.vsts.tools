@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "databricksDeployScriptsTasks",
     "name": "Databricks Script Deployment Task by Data Thirst",
-    "version": "0.2.11",
+    "version": "0.2.12",
     "publisher": "DataThirstLtd",
     "targets": [
         {
@@ -49,7 +49,7 @@
             "path": "overviewimages/addingTasks.png"
         }
     ],
-    "public": false,
+    "public": true,
     "files": [
         {
             "path": "deployScriptsTask"
