@@ -1,7 +1,8 @@
 
 
-$Clean = $false
+$Clean = $true
 
+Set-Location $PSScriptRoot
 
 Function DownloadModules($TaskFolder, $ModuleName){
     $TaskModuleFolder = Join-Path $TaskFolder "\ps_modules"
@@ -30,11 +31,11 @@ if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
 
 $TaskFolder = "deploySecretTask"
 if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
-    DownloadModules $TaskFolder "VstsTaskSDK"
+    DownloadModules $TaskFolder "VstsTastfxkSDK"
 }
 
 if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
     DownloadModules $TaskFolder "azure.databricks.cicd.tools"
 }
 
-&tfx extension create --manifest-globs vss-extension.json --output-path ./bin
+# &tfx extension create --manifest-globs vss-extension.json --output-path ./bin

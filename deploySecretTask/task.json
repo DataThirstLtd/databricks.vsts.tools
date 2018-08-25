@@ -12,8 +12,8 @@
     "author": "Data Thirst Ltd",
     "version": {
         "Major": 0,
-        "Minor": 2,
-        "Patch": 9
+        "Minor": 3,
+        "Patch": 1
     },
     "instanceNameFormat": "Databricks Secret deployment",
     "inputs": [

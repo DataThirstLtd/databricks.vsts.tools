@@ -37,3 +37,6 @@ Please see the PowerShell module: https://github.com/DataThirstLtd/azure.databri
 
 # Libraries, Clusters & Jobs
 Coming Soon
+
+# History
+25 Aug 2018 0.3.1   Minor Bug fix for handling incorrect line endings. Caused some files to export incorrectly
