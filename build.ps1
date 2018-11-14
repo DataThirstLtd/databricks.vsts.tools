@@ -34,7 +34,7 @@ Function DownloadModules($TaskFolder, $ModuleName){
     }
     New-Item -ItemType Directory $TaskModuleFolder -Force | Out-Null
 
-    Save-Module -Name $ModuleName -Path $TaskModuleFolder
+    Save-Module -Name $ModuleName -Path $TaskModuleFolder -Force -AcceptLicense -Confirm
 
     Get-ChildItem $TaskModuleFolder\$ModuleName\*\* | % {
         Move-Item -Path $_.FullName -Destination $TaskModuleFolder\$ModuleName\
@@ -45,20 +45,20 @@ setConfig $Config
 
 
 $TaskFolder = "deployScriptsTask"
-if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
+if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\VstsTaskSDK"))) -or ($Clean)){
     DownloadModules $TaskFolder "VstsTaskSDK"
 }
 
-if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
+if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\azure.databricks.cicd.tools"))) -or ($Clean)){
     DownloadModules $TaskFolder "azure.databricks.cicd.tools"
 }
 
 $TaskFolder = "deploySecretTask"
-if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
+if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\VstsTaskSDK"))) -or ($Clean)){
     DownloadModules $TaskFolder "VstsTaskSDK"
 }
 
-if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
+if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\azure.databricks.cicd.tools"))) -or ($Clean)){
     DownloadModules $TaskFolder "azure.databricks.cicd.tools"
 }
 
