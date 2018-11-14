@@ -1,8 +1,19 @@
 
-
+$Config = 'Test'   # Test Or Prod
 $Clean = $true
 
 Set-Location $PSScriptRoot
+
+Function setConfig($UseConfig){
+    $UseConfig = $UseConfig.ToLower()
+    Copy-Item ".\vss-extension.$UseConfig.json" ".\vss-extension.json" -Force
+    $tasks = Get-ChildItem -Filter "task.$UseConfig.json" -File -Recurse -Depth 1
+    foreach ($t in $tasks){
+        $NewName = ($t.FullName).Replace(".$($UseConfig)","")
+        Copy-Item $t.FullName $NewName -Force
+    }
+    Return
+}
 
 Function DownloadModules($TaskFolder, $ModuleName){
     $TaskModuleFolder = Join-Path $TaskFolder "\ps_modules"
@@ -10,7 +21,7 @@ Function DownloadModules($TaskFolder, $ModuleName){
     if (Test-Path -Path $ModuleFolder){
         Remove-Item $ModuleFolder -Force -Recurse
     }
-    mkdir $TaskModuleFolder -Force | Out-Null
+    New-Item -ItemType Directory $TaskModuleFolder -Force | Out-Null
 
     Save-Module -Name $ModuleName -Path $TaskModuleFolder
 
@@ -19,6 +30,9 @@ Function DownloadModules($TaskFolder, $ModuleName){
     }
 }
 
+setConfig $Config
+
+Return
 
 $TaskFolder = "deployScriptsTask"
 if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
@@ -31,11 +45,12 @@ if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
 
 $TaskFolder = "deploySecretTask"
 if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
-    DownloadModules $TaskFolder "VstsTastfxkSDK"
+    DownloadModules $TaskFolder "VstsTaskSDK"
 }
 
 if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
     DownloadModules $TaskFolder "azure.databricks.cicd.tools"
 }
+
 
 # &tfx extension create --manifest-globs vss-extension.json --output-path ./bin

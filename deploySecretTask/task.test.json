@@ -1,0 +1,69 @@
+{
+    "id": "e7e6f2ae-fe5e-4191-9fd3-dbd811fa72e6",
+    "name": "databricksDeploySecret",
+    "friendlyName": "Databricks Deploy Secret",
+    "description": "Deploy a secret to your Databricks workspace",
+    "helpMarkDown": "",
+    "category": "Deploy",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "Data Thirst Ltd",
+    "version": {
+        "Major": 0,
+        "Minor": 3,
+        "Patch": 1
+    },
+    "instanceNameFormat": "Databricks Secret deployment",
+    "inputs": [
+        {
+            "name": "bearerToken",
+            "type": "string",
+            "label": "Databricks bearer token",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "API Key - see your user account in your Databricks Workspace"
+        },
+        {
+            "name": "region",
+            "type": "string",
+            "label": "Azure Region",
+            "defaultValue": "westeurope",
+            "required": true,
+            "helpMarkDown": "The location of your workspace as seen in workspace URL"
+        },
+        {
+            "name": "secretScopeName",
+            "type": "string",
+            "label": "Scope Name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "What scope should the is secret be assigned to"
+        },
+        {
+            "name": "secretName",
+            "type": "string",
+            "label": "Secret Name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "You will retrieve the secret using this name"
+        },
+        {
+            "name": "secretValue",
+            "type": "string",
+            "label": "Secret Value",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Your secret value such as a key or password"
+        }
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "vstsDeploySecret.ps1",
+            "platforms": [
+                "windows"
+            ]
+        }
+    }
+}
