@@ -62,5 +62,5 @@ if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\azure.databricks.cicd
     DownloadModules $TaskFolder "azure.databricks.cicd.tools"
 }
 
-
+Remove-Item ./bin/*.* -Force
 &tfx extension create --manifest-globs vss-extension.json --output-path ./bin
