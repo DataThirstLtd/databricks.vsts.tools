@@ -55,7 +55,7 @@
             "label": "Secret Value",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Your secret value such as a key or password"
+            "helpMarkDown": "Your secret value such as a key or password. Use a secret Variable or get from KeyVault."
         }
     ],
     "execution": {
