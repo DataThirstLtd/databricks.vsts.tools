@@ -1,0 +1,61 @@
+{
+    "id": "e7e6f2ae-fe5e-4191-9fd3-dbd811fa72e7",
+    "name": "databricksDeployScripts",
+    "friendlyName": "Databricks Deploy Scripts",
+    "description": "Deploys a folder of scripts to your Databricks workspace",
+    "helpMarkDown": "",
+    "category": "Deploy",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "Data Thirst Ltd",
+    "version": {
+        "Major": "{VersionMajor}",
+        "Minor": "{VersionMinor}",
+        "Patch": "{VersionPatch}"
+    },
+    "instanceNameFormat": "Databricks Script deployment",
+    "inputs": [
+        {
+            "name": "bearerToken",
+            "type": "string",
+            "label": "Databricks bearer token",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "API Key - see your user account in your Databricks Workspace"
+        },
+        {
+            "name": "region",
+            "type": "string",
+            "label": "Azure Region",
+            "defaultValue": "westeurope",
+            "required": true,
+            "helpMarkDown": "The location of your workspace as seen in workspace URL"
+        },
+        {
+            "name": "localPath",
+            "type": "filePath",
+            "label": "Source files path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Root path of the fiiles to deploy (will include subfolders)"
+        },
+        {
+            "name": "databricksPath",
+            "type": "string",
+            "label": "Target files path",
+            "defaultValue": "/Shared",
+            "required": true,
+            "helpMarkDown": "Root folder to deploy to - must start /"
+        }
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "vstsDeploy.ps1",
+            "platforms": [
+                "windows"
+            ]
+        }
+    }
+}

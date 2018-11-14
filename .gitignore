@@ -8,7 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+*.DS_Store
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 */ps_modules/*
@@ -328,3 +328,7 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+
+vss-extension.json
+task.json
