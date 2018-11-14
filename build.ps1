@@ -37,7 +37,7 @@ Function DownloadModules($TaskFolder, $ModuleName){
     }
     New-Item -ItemType Directory $TaskModuleFolder -Force | Out-Null
 
-    Save-Module -Name $ModuleName -Path $TaskModuleFolder -Force -AcceptLicense -Confirm
+    Save-Module -Name $ModuleName -Path $TaskModuleFolder -Force -AcceptLicense -Confirm:$false
 
     Get-ChildItem $TaskModuleFolder\$ModuleName\*\* | % {
         Move-Item -Path $_.FullName -Destination $TaskModuleFolder\$ModuleName\
