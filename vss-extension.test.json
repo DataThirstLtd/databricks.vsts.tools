@@ -14,7 +14,7 @@
         "Extension"
       ],
     "categories": [
-        "Build and release"
+        "Azure Pipelines"
     ],
     "content": {
         "details": {
@@ -40,7 +40,7 @@
             "path": "overviewimages/addingTasks.png"
         }
     ],
-    "public": true,
+    "public": false,
     "files": [
         {
             "path": "deployScriptsTask"

@@ -63,4 +63,4 @@ if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){
 }
 
 
-# &tfx extension create --manifest-globs vss-extension.json --output-path ./bin
+&tfx extension create --manifest-globs vss-extension.json --output-path ./bin
