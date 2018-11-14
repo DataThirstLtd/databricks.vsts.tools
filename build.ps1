@@ -1,10 +1,9 @@
 
 param([string]$Config = 'Test', [boolean]$Clean = $false)   # Test Or Prod
 
-# These do nothing now, the --rev-version is used when deploying
 $VersionMajor = "0"
-$VersionMinor = "0"
-$VersionPatch = "0"
+$VersionMinor = "3"
+$VersionPatch = "4"
 
 Set-Location $PSScriptRoot
 
