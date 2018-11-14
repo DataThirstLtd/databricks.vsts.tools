@@ -1,16 +1,27 @@
 
-$Config = 'Test'   # Test Or Prod
-$Clean = $true
+param([string]$Config = 'Test', [boolean]$Clean = $false)   # Test Or Prod
+
+$VersionMajor = "0"
+$VersionMinor = "3"
+$VersionPatch = "2"
 
 Set-Location $PSScriptRoot
 
 Function setConfig($UseConfig){
     $UseConfig = $UseConfig.ToLower()
-    Copy-Item ".\vss-extension.$UseConfig.json" ".\vss-extension.json" -Force
+    $Content = Get-Content ".\vss-extension.$UseConfig.json" -Raw
+    $FullVersion = "$($VersionMajor).$($VersionMinor).$($VersionPatch)"
+    $Content = $Content.Replace('{FullVersion}', $FullVersion)
+    Set-Content ".\vss-extension.json" $Content
+
     $tasks = Get-ChildItem -Filter "task.$UseConfig.json" -File -Recurse -Depth 1
     foreach ($t in $tasks){
         $NewName = ($t.FullName).Replace(".$($UseConfig)","")
-        Copy-Item $t.FullName $NewName -Force
+        $Content = Get-Content $t.FullName -Raw
+        $Content = $Content.Replace('"{VersionMajor}"', $VersionMajor)
+        $Content = $Content.Replace('"{VersionMinor}"', $VersionMinor)
+        $Content = $Content.Replace('"{VersionPatch}"', $VersionPatch)
+        Set-Content $NewName $Content
     }
     Return
 }
@@ -32,7 +43,6 @@ Function DownloadModules($TaskFolder, $ModuleName){
 
 setConfig $Config
 
-Return
 
 $TaskFolder = "deployScriptsTask"
 if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules"))) -or ($Clean)){

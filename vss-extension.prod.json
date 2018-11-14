@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "databricksDeployScriptsTasks",
     "name": "Databricks Script Deployment Task by Data Thirst",
-    "version": "0.3.2",
+    "version": "{FullVersion}",
     "publisher": "DataThirstLtd",
     "targets": [
         {

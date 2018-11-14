@@ -1,8 +1,8 @@
 {
-    "id": "e7e6f2ae-fe5e-4191-9fd3-dbd811fa72e6",
+    "id": "ea9d6bbb-6014-4d9d-867b-569f3b86e0c5",
     "name": "databricksDeploySecret",
-    "friendlyName": "Databricks Deploy Secret",
-    "description": "Deploy a secret to your Databricks workspace",
+    "friendlyName": "Databricks Deploy Secret-TEST",
+    "description": "Deploy a secret to your Databricks workspace-TEST",
     "helpMarkDown": "",
     "category": "Deploy",
     "visibility": [
@@ -11,9 +11,9 @@
     ],
     "author": "Data Thirst Ltd",
     "version": {
-        "Major": 0,
-        "Minor": 3,
-        "Patch": 1
+        "Major": "{VersionMajor}",
+        "Minor": "{VersionMinor}",
+        "Patch": "{VersionPatch}"
     },
     "instanceNameFormat": "Databricks Secret deployment",
     "inputs": [

@@ -1,8 +1,8 @@
 {
-    "id": "e7e6f2ae-fe5e-4191-9fd3-dbd811fa72e7",
+    "id": "8da00a8b-9605-4a30-9aaa-2481536a44d6",
     "name": "databricksDeployScripts",
-    "friendlyName": "Databricks Deploy Scripts",
-    "description": "Deploys a folder of scripts to your Databricks workspace",
+    "friendlyName": "Databricks Deploy Scripts-TEST",
+    "description": "Deploys a folder of scripts to your Databricks workspace-TEST",
     "helpMarkDown": "",
     "category": "Deploy",
     "visibility": [
@@ -11,9 +11,9 @@
     ],
     "author": "Data Thirst Ltd",
     "version": {
-        "Major": 0,
-        "Minor": 3,
-        "Patch": 1
+        "Major": "{VersionMajor}",
+        "Minor": "{VersionMinor}",
+        "Patch": "{VersionPatch}"
     },
     "instanceNameFormat": "Databricks Script deployment",
     "inputs": [
