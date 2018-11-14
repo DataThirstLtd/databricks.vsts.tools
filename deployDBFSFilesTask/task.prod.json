@@ -1,6 +1,6 @@
 {
-    "id": "e7e6f2ae-fe5e-4191-9fd3-dbd811fa72e6",
-    "name": "databricksDeployDBFSFiles",
+    "id": "98349eb2-514c-49bb-858f-00682ee398bd",
+    "name": "databricksDeployDBFSFilesTask",
     "friendlyName": "Databricks files to DBFS",
     "description": "Deploy files (py, jar, csv etc) to DBFS",
     "helpMarkDown": "",
@@ -35,7 +35,7 @@
         },
         {
             "name": "LocalRootFolder",
-            "type": "string",
+            "type": "filePath",
             "label": "Local Root Folder",
             "defaultValue": "",
             "required": true,
