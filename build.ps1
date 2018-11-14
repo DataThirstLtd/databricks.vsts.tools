@@ -3,12 +3,9 @@ param([string]$Config = 'Test', [boolean]$Clean = $false)   # Test Or Prod
 
 $VersionMajor = "0"
 $VersionMinor = "3"
-$VersionPatch = "2"
+$VersionPatch = "3"
 
 Set-Location $PSScriptRoot
-
-Get-PackageProvider
-Get-Module
 
 Function setConfig($UseConfig){
     $UseConfig = $UseConfig.ToLower()
