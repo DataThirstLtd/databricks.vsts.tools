@@ -7,6 +7,9 @@ $VersionPatch = "2"
 
 Set-Location $PSScriptRoot
 
+Get-PackageProvider
+Get-Module
+
 Function setConfig($UseConfig){
     $UseConfig = $UseConfig.ToLower()
     $Content = Get-Content ".\vss-extension.$UseConfig.json" -Raw
