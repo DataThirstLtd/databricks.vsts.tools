@@ -3,7 +3,7 @@ param([string]$Config = 'Test', [boolean]$Clean = $false)   # Test Or Prod
 
 $VersionMajor = "0"
 $VersionMinor = "3"
-$VersionPatch = "5"
+$VersionPatch = "6"
 
 Set-Location $PSScriptRoot
 

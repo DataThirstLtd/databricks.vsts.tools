@@ -49,6 +49,9 @@
             "path": "deploySecretTask"
         },
         {
+            "path": "deployDBFSFilesTask"
+        },
+        {
             "path": "overviewimages",
             "addressable": true
         }
@@ -72,6 +75,16 @@
             ],
             "properties": {
                 "name": "deploySecretTask"
+            }
+        },
+        {
+            "id": "databricksDeployDBFSFiles",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "deployDBFSFilesTask"
             }
         }
     ]
