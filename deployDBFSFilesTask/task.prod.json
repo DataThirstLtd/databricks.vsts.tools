@@ -1,8 +1,8 @@
 {
-    "id": "e7e6f2ae-fe5e-4191-9fd3-dbd811fa72e7",
-    "name": "databricksDeployScripts",
-    "friendlyName": "Databricks Deploy Notebooks",
-    "description": "Deploys a folder of Notebooks to your Databricks workspace",
+    "id": "98349eb2-514c-49bb-858f-00682ee398bd",
+    "name": "databricksDeployDBFSFilesTask",
+    "friendlyName": "Databricks files to DBFS",
+    "description": "Deploy files (py, jar, csv etc) to DBFS",
     "helpMarkDown": "",
     "category": "Deploy",
     "visibility": [
@@ -15,7 +15,7 @@
         "Minor": "{VersionMinor}",
         "Patch": "{VersionPatch}"
     },
-    "instanceNameFormat": "Databricks Notebooks deployment",
+    "instanceNameFormat": "Databricks DBFS File Deployment",
     "inputs": [
         {
             "name": "bearerToken",
@@ -34,25 +34,33 @@
             "helpMarkDown": "The location of your workspace as seen in workspace URL"
         },
         {
-            "name": "localPath",
+            "name": "LocalRootFolder",
             "type": "filePath",
-            "label": "Source files path",
+            "label": "Local Root Folder",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Root path of the fiiles to deploy (will include subfolders)"
+            "helpMarkDown": "Path to the folder to deploy for example $(System.DefaultWorkingDirectory)/drop"
         },
         {
-            "name": "databricksPath",
+            "name": "FilePattern",
             "type": "string",
-            "label": "Target files path",
-            "defaultValue": "/Shared",
+            "label": "File Pattern",
+            "defaultValue": "*.*",
             "required": true,
-            "helpMarkDown": "Root folder to deploy to - must start /"
+            "helpMarkDown": "File Pattern to match, example *.jar or MyFile.csv"
+        },
+        {
+            "name": "TargetLocation",
+            "type": "string",
+            "label": "Target folder in DBFS",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Target folder in DBFS, should start /, example /Folder/Subfolder"
         }
     ],
     "execution": {
         "PowerShell3": {
-            "target": "vstsDeploy.ps1",
+            "target": "vstsDeployDBFSFile.ps1",
             "platforms": [
                 "windows"
             ]

@@ -332,3 +332,4 @@ ASALocalRun/
 
 vss-extension.json
 task.json
+deploy.ps1

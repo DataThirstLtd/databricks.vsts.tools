@@ -1,8 +1,8 @@
 {
     "id": "8da00a8b-9605-4a30-9aaa-2481536a44d6",
     "name": "databricksDeployScripts",
-    "friendlyName": "Databricks Deploy Scripts-TEST",
-    "description": "Deploys a folder of scripts to your Databricks workspace-TEST",
+    "friendlyName": "Databricks Deploy Notebooks-TEST",
+    "description": "Deploys a folder of Notebooks to your Databricks workspace-TEST",
     "helpMarkDown": "",
     "category": "Deploy",
     "visibility": [
@@ -15,7 +15,7 @@
         "Minor": "{VersionMinor}",
         "Patch": "{VersionPatch}"
     },
-    "instanceNameFormat": "Databricks Script deployment",
+    "instanceNameFormat": "Databricks Notebooks deployment",
     "inputs": [
         {
             "name": "bearerToken",

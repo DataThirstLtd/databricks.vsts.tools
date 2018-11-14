@@ -2,8 +2,8 @@
 param([string]$Config = 'Test', [boolean]$Clean = $false)   # Test Or Prod
 
 $VersionMajor = "0"
-$VersionMinor = "3"
-$VersionPatch = "4"
+$VersionMinor = "4"
+$VersionPatch = "0"
 
 Set-Location $PSScriptRoot
 
@@ -54,6 +54,15 @@ if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\azure.databricks.cicd
 }
 
 $TaskFolder = "deploySecretTask"
+if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\VstsTaskSDK"))) -or ($Clean)){
+    DownloadModules $TaskFolder "VstsTaskSDK"
+}
+
+if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\azure.databricks.cicd.tools"))) -or ($Clean)){
+    DownloadModules $TaskFolder "azure.databricks.cicd.tools"
+}
+
+$TaskFolder = "deployDBFSFilesTask"
 if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\VstsTaskSDK"))) -or ($Clean)){
     DownloadModules $TaskFolder "VstsTaskSDK"
 }
