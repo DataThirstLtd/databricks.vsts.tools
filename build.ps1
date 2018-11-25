@@ -1,9 +1,10 @@
 
-param([string]$Config = 'Test', [boolean]$Clean = $true)   # Test Or Prod
-
-$VersionMajor = "0"
-$VersionMinor = "4"
-$VersionPatch = "2"
+param([string]$Config = 'Test', # Test Or Prod
+    [boolean]$Clean = $true,
+    [string]$VersionMajor = "0",
+    [string]$VersionMinor = "4",
+    [string]$VersionPatch = "3"
+)
 
 Set-Location $PSScriptRoot
 

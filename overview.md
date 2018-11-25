@@ -6,11 +6,11 @@ This extension has a set of tasks to help with your CI/CD deployments if you are
 # Azure DevOps Tasks
 
 ## Add task
-Your will find the new Tasks available under the Deploy tab, or search for Databricks:
+You will find the new Tasks available under the Deploy tab, or search for Databricks:
 ![Adding Tasks](overviewimages/addingTasks.png)
 
 ## Deploying Files to DBFS
-Use this to deploy a file or pattern of files to DBFS. Typically this is used for jars, py files or data files such as csv.
+Use this to deploy a file or pattern of files to DBFS. Typically this is used for jars, py files or data files such as csv. Now supports large files.
 ![Deploying Files](overviewimages/deployDBFS.png)
 
 ### Parameters
@@ -51,5 +51,6 @@ Please see the PowerShell module: https://github.com/DataThirstLtd/azure.databri
 These tools are based on the PowerShell module [azure.databricks.cicd.tools](https://github.com/DataThirstLtd/azure.databricks.cicd.tools) available through PSGallery. The module has much more functionality if you require it for Libraries, Jobs and Cluster management.
 
 # History
+- 25 Nov 2018 0.4.2   Added support for DBFS files over 1MB
 - 14 Nov 2018 0.4.0   Added DBFS file uploads and provided updates to run on PowerShell
 - 25 Aug 2018 0.3.1   Minor Bug fix for handling incorrect line endings. Caused some files to export incorrectly
