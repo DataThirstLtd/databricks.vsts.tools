@@ -1,5 +1,5 @@
 {
-    "id": "98349eb2-514c-49bb-858f-00682ee398bd",
+    "id": "986606b1-2c0e-425f-a74c-5b8ee3c5da82",
     "name": "databricksDeployDBFSFilesTask",
     "friendlyName": "Databricks files to DBFS",
     "description": "Deploy files (py, jar, csv etc) to DBFS",
