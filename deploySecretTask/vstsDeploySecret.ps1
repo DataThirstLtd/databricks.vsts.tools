@@ -11,6 +11,13 @@ try {
     [string]$secretScopeName = Get-VstsInput -Name secretScopeName
     [string]$secretName = Get-VstsInput -Name secretName
     [string]$secretValue = Get-VstsInput -Name secretValue
+    [string]$applicationId = Get-VstsInput -Name applicationId
+    [string]$spSecret = Get-VstsInput -Name spSecret
+    [string]$authMethod = Get-VstsInput -Name authMethod
+    [string]$subscriptionId = Get-VstsInput -Name subscriptionId
+    [string]$tenantId = Get-VstsInput -Name tenantId
+    [string]$resourceGroup = Get-VstsInput -Name resourceGroup
+    [string]$workspace = Get-VstsInput -Name workspace
 
     # Import the helpers.
     Import-Module -Name $PSScriptRoot\ps_modules\azure.databricks.cicd.tools\azure.databricks.cicd.tools.psm1
@@ -21,7 +28,14 @@ try {
     # "Write-VstsSetResult" on nuget.exe/msbuild.exe failure.
     #$global:ErrorActionPreference = 'Continue'
 
-    Set-Secret -BearerToken $bearerToken -Region $region -ScopeName $secretScopeName -SecretName $secretName -SecretValue $secretValue
+    if ($authMethod -eq "bearer"){
+        Connect-Databricks -BearerToken $bearerToken -Region $region
+    }
+    else{
+        Connect-Databricks -ApplicationId $applicationId -Secret $spSecret -Region $region -ResourceGroupName $resourceGroup -WorkspaceName $workspace -TenantId $tenantId -SubscriptionId $subscriptionId 
+    }
+    Add-DatabricksSecretScope -ScopeName $secretScopeName -AllUserAccess -ErrorAction SilentlyContinue 
+    Set-DatabricksSecret -ScopeName $secretScopeName -SecretName $secretName -SecretValue $secretValue 
 
 } finally {
     Trace-VstsLeavingInvocation $MyInvocation
