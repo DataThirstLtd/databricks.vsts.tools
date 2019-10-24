@@ -2,8 +2,8 @@
 param([string]$Config = 'Test', # Test Or Prod
     [boolean]$Clean = $true,
     [string]$VersionMajor = "0",
-    [string]$VersionMinor = "4",
-    [string]$VersionPatch = "3"
+    [string]$VersionMinor = "5",
+    [string]$VersionPatch = "214"
 )
 
 Set-Location $PSScriptRoot
@@ -35,7 +35,7 @@ Function DownloadModules($TaskFolder, $ModuleName){
     }
     New-Item -ItemType Directory $TaskModuleFolder -Force | Out-Null
 
-    Save-Module -Name $ModuleName -Path $TaskModuleFolder -Force -AcceptLicense -Confirm:$false
+    Save-Module -Name $ModuleName -Path $TaskModuleFolder -Force -Confirm:$false -AllowPrerelease
 
     Get-ChildItem $TaskModuleFolder\$ModuleName\*\* | % {
         Move-Item -Path $_.FullName -Destination $TaskModuleFolder\$ModuleName\
@@ -71,6 +71,15 @@ if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\VstsTaskSDK"))) -or (
 if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\azure.databricks.cicd.tools"))) -or ($Clean)){
     DownloadModules $TaskFolder "azure.databricks.cicd.tools"
 }
+$TaskFolder = "deployCreateBearer"
+if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\VstsTaskSDK"))) -or ($Clean)){
+    DownloadModules $TaskFolder "VstsTaskSDK"
+}
 
-Remove-Item ./bin/*.* -Force
+if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\azure.databricks.cicd.tools"))) -or ($Clean)){
+    DownloadModules $TaskFolder "azure.databricks.cicd.tools"
+}
+
+
+Remove-Item ./bin/*.* -Force -ErrorAction SilentlyContinue
 &tfx extension create --manifest-globs vss-extension.json --output-path ./bin

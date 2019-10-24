@@ -1,0 +1,104 @@
+{
+    "id": "e1a556ad-b8a0-4f74-8486-c6e9d321fd9f",
+    "name": "databricksDeployCreateBearer",
+    "friendlyName": "Databricks Create Bearer Token",
+    "description": "Databricks Create Bearer Token and outputs back to a variable called $(BearerToken) which you can reuse in later steps",
+    "helpMarkDown": "Creates a variable called $(BearerToken) in your pipeline containing a new Databricks Token",
+    "category": "Deploy",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "Data Thirst Ltd",
+    "version": {
+        "Major": "{VersionMajor}",
+        "Minor": "{VersionMinor}",
+        "Patch": "{VersionPatch}"
+    },
+    "instanceNameFormat": "Databricks Bearer Token",
+    "groups": [
+        {
+            "name": "Security",
+            "displayName": "Security",
+            "isExpanded": true
+        }
+    ],
+    "inputs": [
+        {
+            "name": "applicationId",
+            "type": "string",
+            "label": "Application Id",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": true,
+            "helpMarkDown": "Service Principal that has access to Databricks (Contributor)"
+        },
+        {
+            "name": "spSecret",
+            "type": "string",
+            "label": "Service Principal Secret",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": true,
+            "helpMarkDown": "Secret key for your service principal"
+        },
+        {
+            "name": "resourceGroup",
+            "type": "string",
+            "label": "Resource Group Name",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": true,
+            "helpMarkDown": "Resource Group Name of your Databricks Workspace"
+        },
+        {
+            "name": "workspace",
+            "type": "string",
+            "label": "Databricks Workspace Name",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": true,
+            "helpMarkDown": "Databricks Workspace Name (as shown in Azure Portal)"
+        },
+        {
+            "name": "subscriptionId",
+            "type": "string",
+            "label": "Subscription ID",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": true,
+            "helpMarkDown": "Subscription ID for the workspace"
+        },
+        {
+            "name": "tenantId",
+            "type": "string",
+            "label": "Tenant ID",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": true,
+            "helpMarkDown": "Tenant ID for the Azure Subscription"
+        },
+        {
+            "name": "region",
+            "type": "string",
+            "label": "Azure Region",
+            "defaultValue": "westeurope",
+            "required": true,
+            "helpMarkDown": "The location of your workspace as seen in workspace URL"
+        }
+    ],
+    "OutputVariables": [
+        {
+            "name": "BearerToken",
+            "description": "This is the Databricks Bearer Token which you can use in further API Calls"
+        }
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "vstsDeployCreateBearer.ps1",
+            "platforms": [
+                "windows"
+            ]
+        }
+    }
+}

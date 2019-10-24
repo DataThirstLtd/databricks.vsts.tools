@@ -16,14 +16,96 @@
         "Patch": "{VersionPatch}"
     },
     "instanceNameFormat": "Databricks Notebooks deployment",
+    "groups": [
+        {
+            "name":"Security",
+            "displayName":"Security",
+            "isExpanded":true
+        }
+    ],
     "inputs": [
+        {
+            "name":"authMethod",
+            "type":"radio",
+            "label":"Authentication Method",
+            "required":true,
+            "defaultValue":"bearer",
+            "groupName": "Security",
+            "options": {
+                "bearer":"Bearer Token",
+                "servicePrincipal":"Service Principal"
+            },
+            "helpMarkDown": "How should we authenticate to Databricks? Complete all displayed fields."
+        },
         {
             "name": "bearerToken",
             "type": "string",
             "label": "Databricks bearer token",
             "defaultValue": "",
-            "required": true,
+            "groupName": "Security",
+            "required": false,
+            "visibleRule": "authMethod = bearer",
             "helpMarkDown": "API Key - see your user account in your Databricks Workspace"
+        },
+        {
+            "name": "applicationId",
+            "type": "string",
+            "label": "Application Id",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": false,
+            "visibleRule": "authMethod = servicePrincipal",
+            "helpMarkDown": "Service Principal that has access to Databricks (Contributor)"
+        },
+        {
+            "name": "spSecret",
+            "type": "string",
+            "label": "Service Principal Secret",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": false,
+            "visibleRule": "authMethod = servicePrincipal",
+            "helpMarkDown": "Secret key for your service principal"
+        },
+        {
+            "name": "resourceGroup",
+            "type": "string",
+            "label": "Resource Group Name",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": false,
+            "visibleRule": "authMethod = servicePrincipal",
+            "helpMarkDown": "Resource Group Name of your Databricks Workspace"
+        },
+        {
+            "name": "workspace",
+            "type": "string",
+            "label": "Databricks Workspace Name",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": false,
+            "visibleRule": "authMethod = servicePrincipal",
+            "helpMarkDown": "Databricks Workspace Name (as shown in Azure Portal)"
+        },
+        {
+            "name": "subscriptionId",
+            "type": "string",
+            "label": "Subscription ID",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": false,
+            "visibleRule": "authMethod = servicePrincipal",
+            "helpMarkDown": "Subscription ID for the workspace"
+        },
+        {
+            "name": "tenantId",
+            "type": "string",
+            "label": "Tenant ID",
+            "defaultValue": "",
+            "groupName": "Security",
+            "required": false,
+            "visibleRule": "authMethod = servicePrincipal",
+            "helpMarkDown": "Tenant ID for the Azure Subscription"
         },
         {
             "name": "region",
@@ -48,6 +130,14 @@
             "defaultValue": "/Shared",
             "required": true,
             "helpMarkDown": "Root folder to deploy to - must start /"
+        },
+        { 
+            "name": "clean", 
+            "type": "boolean", 
+            "label": "Clean Workspace Folder", 
+            "defaultValue": "false", 
+            "required": false,
+            "helpMarkDown": "Deletes any files in the target folder before copying"
         }
     ],
     "execution": {

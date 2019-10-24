@@ -11,6 +11,14 @@ try {
     [string]$LocalRootFolder = Get-VstsInput -Name LocalRootFolder
     [string]$FilePattern = Get-VstsInput -Name FilePattern
     [string]$TargetLocation = Get-VstsInput -Name TargetLocation
+    [string]$applicationId = Get-VstsInput -Name applicationId
+    [string]$spSecret = Get-VstsInput -Name spSecret
+    [string]$authMethod = Get-VstsInput -Name authMethod
+    [string]$subscriptionId = Get-VstsInput -Name subscriptionId
+    [string]$tenantId = Get-VstsInput -Name tenantId
+    [string]$resourceGroup = Get-VstsInput -Name resourceGroup
+    [string]$workspace = Get-VstsInput -Name workspace
+
 
     # Import the helpers.
     Import-Module -Name $PSScriptRoot\ps_modules\azure.databricks.cicd.tools\azure.databricks.cicd.tools.psm1
@@ -20,8 +28,14 @@ try {
     # needs to explicitly be called to fail the task. Invoke-BuildTools handles calling
     # "Write-VstsSetResult" on nuget.exe/msbuild.exe failure.
     #$global:ErrorActionPreference = 'Continue'
+    if ($authMethod -eq "bearer"){
+        Connect-Databricks -BearerToken $bearerToken -Region $region
+    }
+    else{
+        Connect-Databricks -ApplicationId $applicationId -Secret $spSecret -Region $region -ResourceGroupName $resourceGroup -WorkspaceName $workspace -TenantId $tenantId -SubscriptionId $subscriptionId
+    }
 
-    Add-DatabricksDBFSFile -BearerToken $BearerToken -Region $Region -LocalRootFolder $LocalRootFolder -FilePattern $FilePattern  -TargetLocation $TargetLocation
+    Add-DatabricksDBFSFile -LocalRootFolder $LocalRootFolder -FilePattern $FilePattern  -TargetLocation $TargetLocation
 
 } finally {
     Trace-VstsLeavingInvocation $MyInvocation
