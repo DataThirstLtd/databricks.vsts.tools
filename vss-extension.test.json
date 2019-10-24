@@ -52,6 +52,9 @@
             "path": "deployDBFSFilesTask"
         },
         {
+            "path": "deployCreateBearer"
+        },
+        {
             "path": "overviewimages",
             "addressable": true
         }
@@ -85,6 +88,16 @@
             ],
             "properties": {
                 "name": "deployDBFSFilesTask"
+            }
+        },
+        {
+            "id": "databricksDeployCreateBearer",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "DeployCreateBearer"
             }
         }
     ]

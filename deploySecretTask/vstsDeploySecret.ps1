@@ -32,10 +32,19 @@ try {
         Connect-Databricks -BearerToken $bearerToken -Region $region
     }
     else{
+        # Due to bug in Databricks API when using AAD auth secrets fail to create. Hack is to generate a bearer token and use that to auth instead then drop it.
         Connect-Databricks -ApplicationId $applicationId -Secret $spSecret -Region $region -ResourceGroupName $resourceGroup -WorkspaceName $workspace -TenantId $tenantId -SubscriptionId $subscriptionId 
+        $Token = Invoke-DatabricksAPI -Method POST -API "api/2.0/token/create" -Body @{}
+        Connect-Databricks -BearerToken $Token.token_value -Region $region
+        $Drop = $True
     }
     Add-DatabricksSecretScope -ScopeName $secretScopeName -AllUserAccess -ErrorAction SilentlyContinue 
     Set-DatabricksSecret -ScopeName $secretScopeName -SecretName $secretName -SecretValue $secretValue 
+
+    if ($Drop){
+        $Body = @{"token_id"= $Token.token_info.token_id} 
+        Invoke-DatabricksAPI  -Method POST -API "api/2.0/token/delete" -Body $Body
+    }
 
 } finally {
     Trace-VstsLeavingInvocation $MyInvocation
