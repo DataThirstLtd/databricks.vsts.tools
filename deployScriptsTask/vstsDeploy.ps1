@@ -33,19 +33,23 @@ try {
 
     # Build each solution.
     if ($authMethod -eq "bearer"){
+        Write-Output "Connecting via Bearer"
         Connect-Databricks -BearerToken $bearerToken -Region $region
     }
     else{
+        Write-Output "Connecting via AAD"
         Connect-Databricks -ApplicationId $applicationId -Secret $spSecret -Region $region -ResourceGroupName $resourceGroup -WorkspaceName $workspace -TenantId $tenantId -SubscriptionId $subscriptionId
     }
 
-    if ($clean){
-        Import-DatabricksFolder -LocalPath $localPath -DatabricksPath $databricksPath -Clean
+    Write-Output "Clean $clean"
+    if ($clean -eq "true"){
+        Write-Output "Running with clean"
+        Import-DatabricksFolder -LocalPath $localPath -DatabricksPath $databricksPath -Clean 
     }
     else{
+        Write-Output "Running without clean"
         Import-DatabricksFolder -LocalPath $localPath -DatabricksPath $databricksPath
     }
-
 } finally {
     Trace-VstsLeavingInvocation $MyInvocation
 }
