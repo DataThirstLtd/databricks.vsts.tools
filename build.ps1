@@ -1,9 +1,9 @@
 
 param([string]$Config = 'Test', # Test Or Prod
-    [boolean]$Clean = $true,
+    [boolean]$Clean = $false,
     [string]$VersionMajor = "0",
-    [string]$VersionMinor = "5",
-    [string]$VersionPatch = "214"
+    [string]$VersionMinor = "7",
+    [string]$VersionPatch = "975"
 )
 
 Set-Location $PSScriptRoot
@@ -72,6 +72,10 @@ if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\azure.databricks.cicd
     DownloadModules $TaskFolder "azure.databricks.cicd.tools"
 }
 $TaskFolder = "deployCreateBearer"
+if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\VstsTaskSDK"))) -or ($Clean)){
+    DownloadModules $TaskFolder "VstsTaskSDK"
+}
+$TaskFolder = "deployClusterTask"
 if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\VstsTaskSDK"))) -or ($Clean)){
     DownloadModules $TaskFolder "VstsTaskSDK"
 }
