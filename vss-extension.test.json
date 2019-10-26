@@ -18,7 +18,7 @@
     ],
     "content": {
         "details": {
-        "path": "overview.md"
+        "path": "readme.md"
         }
     },
     "links": {
@@ -53,6 +53,9 @@
         },
         {
             "path": "deployCreateBearer"
+        },
+        {
+            "path": "deployClusterTask"
         },
         {
             "path": "overviewimages",
@@ -98,6 +101,16 @@
             ],
             "properties": {
                 "name": "DeployCreateBearer"
+            }
+        },
+        {
+            "id": "databricksDeployClusterTask",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "DeployClusterTask"
             }
         }
     ]

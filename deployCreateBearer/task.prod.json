@@ -84,7 +84,7 @@
             "label": "Azure Region",
             "defaultValue": "westeurope",
             "required": true,
-            "helpMarkDown": "The location of your workspace as seen in workspace URL"
+            "helpMarkDown": "The location of your workspace as seen in workspace URL - for example westeurope"
         }
     ],
     "OutputVariables": [
