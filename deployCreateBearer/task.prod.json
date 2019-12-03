@@ -89,7 +89,7 @@
     ],
     "OutputVariables": [
         {
-            "name": "BearerToken",
+            "name": "Extension.BearerToken",
             "description": "This is the Databricks Bearer Token which you can use in further API Calls"
         }
     ],
