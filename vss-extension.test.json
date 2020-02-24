@@ -21,17 +21,15 @@
         "path": "readme.md"
         }
     },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools"
+    },
     "links": {
-        "repository": {
-          "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools"
-        },
-        "issues": {
-          "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools/issues"
-        },
         "support": {
-          "uri": "mailto:hello@datathirst.net"
+          "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools/issues"
         }
-      },
+    },
     "icons": {
         "default": "images/logo.png"        
     },
