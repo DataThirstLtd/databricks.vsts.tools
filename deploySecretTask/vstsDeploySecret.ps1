@@ -22,7 +22,8 @@ try {
     # Import the helpers.
     Import-Module -Name $PSScriptRoot\ps_modules\azure.databricks.cicd.tools\azure.databricks.cicd.tools.psm1
     $config = Import-PowerShellDataFile "$PSScriptRoot\ps_modules\azure.databricks.cicd.tools\azure.databricks.cicd.tools.psd1"
-    Write-Output "Tools Version: " + $config.ModuleVersion
+    Write-Output "Tools Version: $($config.ModuleVersion)"
+
     # Change the error action preference to 'Continue' so that each solution will build even if
     # one fails. Since the error action preference is being changed from 'Stop' (the default for
     # PowerShell3 handler) to 'Continue', errors will no longer be terminating and "Write-VstsSetResult"
