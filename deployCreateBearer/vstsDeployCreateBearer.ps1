@@ -31,7 +31,7 @@ try {
     $Token = Invoke-DatabricksAPI  -Method POST -API "api/2.0/token/create" -Body @{}
     
     $BearerToken = $Token.token_value
-    Write-Host "##vso[task.setVariable variable=BearerToken]$BearerToken"
+    Write-Host "##vso[task.setVariable variable=BearerToken; issecret=true]$BearerToken"
 } finally {
     Trace-VstsLeavingInvocation $MyInvocation
 }
