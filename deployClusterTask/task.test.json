@@ -1,6 +1,6 @@
 {
     "id": "6d66a497-a39f-48d5-82fd-2aab0b6d701a",
-    "name": "databricksDeployScripts",
+    "name": "databricksClusterTask",
     "friendlyName": "Databricks Deploy Cluster-TEST",
     "description": "Configures a Databricks Cluster (Analytics Workload) in your workspace-TEST",
     "helpMarkDown": "Deploys a cluster from a JSON config file (generate from Databricks UI)-TEST",
