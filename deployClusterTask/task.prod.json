@@ -126,7 +126,7 @@
     ],
     "OutputVariables": [
         {
-            "name": "DatabricksClusterId",
+            "name": "Extension.DatabricksClusterId",
             "description": "This is the ClusterId created/edited for use in other requests"
         }
     ],
