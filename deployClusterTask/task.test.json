@@ -127,7 +127,11 @@
     "OutputVariables": [
         {
             "name": "Extension.DatabricksClusterId",
-            "description": "This is the ClusterId created/edited for use in other requests"
+            "description": "Backwards compatibility only - please do not use"
+        },
+        {
+            "name": "DatabricksClusterId",
+            "description": "This is the ClusterId created/edited for use in other requests reference as $(ClusterId) or $env:ClusterId in PS Scripts"
         }
     ],
     "execution": {
