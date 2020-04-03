@@ -96,6 +96,7 @@ try {
 
     Write-Host "##vso[task.setVariable variable=DatabricksClusterId;]$ClusterId"
     Write-Host "##vso[task.setVariable variable=Extension.DatabricksClusterId;]$ClusterId"
+
     
     
 } finally {
