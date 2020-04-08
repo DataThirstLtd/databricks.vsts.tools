@@ -81,7 +81,7 @@ try {
         if ($res.Count -gt 0){
             Write-Output "Cluster $ClusterId found - editing"
             $Request['cluster_id'] = $ClusterId
-            $ClusterId = Invoke-DatabricksAPI -API "api/2.0/clusters/edit" -Method POST -Body $Request
+            Invoke-DatabricksAPI -API "api/2.0/clusters/edit" -Method POST -Body $Request
         }
         else
         {
@@ -90,7 +90,7 @@ try {
     }
     else{
         Write-Output "Cluster $ClusterName not found - creating"
-        $ClusterId = Invoke-DatabricksAPI -API "api/2.0/clusters/create" -Method POST -Body $Request
+        $ClusterId = (Invoke-DatabricksAPI -API "api/2.0/clusters/create" -Method POST -Body $Request).cluster_id
         Write-Output "Created Cluster $ClusterId"
     }
 

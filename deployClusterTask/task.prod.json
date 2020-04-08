@@ -131,7 +131,7 @@
         },
         {
             "name": "DatabricksClusterId",
-            "description": "This is the ClusterId created/edited for use in other requests reference as $(ClusterId) or $env:ClusterId in PS Scripts"
+            "description": "This is the ClusterId created/edited for use in other requests reference as $(DatabricksClusterId) or $env:DatabricksClusterId in PS Scripts"
         }
     ],
     "execution": {
