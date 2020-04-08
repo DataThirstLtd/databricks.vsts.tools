@@ -83,6 +83,7 @@ Use the option in the Databricks UI to link your notebook to a git repo or you c
 These tools are based on the PowerShell module [azure.databricks.cicd.tools](https://github.com/DataThirstLtd/azure.databricks.cicd.tools) available through PSGallery. The module has much more functionality if you require it for Libraries, Jobs and more Cluster management.
 
 # History
+- 08 Apr 2020 0.9   Corrected issue with ClusterId not always returning
 - 26 Oct 2019 0.8   Added support for Clusters
 - 18 Oct 2019 0.6   Added support for Service Principal Authentication
 - 18 Oct 2019 0.6   Added support for cleaning workspace folder before deploying
