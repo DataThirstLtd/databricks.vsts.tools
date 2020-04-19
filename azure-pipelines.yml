@@ -64,3 +64,14 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+
+- task: PowerShell@2
+  displayName: 'Publish Test Version to MarketPlace'
+  inputs:
+    targetType: 'inline'
+    script: |
+      $files = get-childitem DataThirstLtd.dataThirstTesting*.vsix
+      $filename = $files.name
+      &tfx extension publish --vsix $filename --token $(Token) --share-with datathirst --auth-type pat
+    pwsh: true
+    workingDirectory: '$(build.artifactstagingdirectory)'
