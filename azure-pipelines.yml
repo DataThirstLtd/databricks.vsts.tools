@@ -1,0 +1,77 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+- develop
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - master
+
+name: $(BuildID)
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: Npm@1
+  inputs:
+    command: 'install'
+
+- task: ms-devlabs.vsts-developer-tools-build-tasks.tfx-installer-build-task.TfxInstaller@2
+  displayName: 'Use Node CLI for Azure DevOps (tfx-cli): v0.7.x'
+  inputs:
+    version: v0.7.x
+
+- task: PowerShell@2
+  displayName: 'Build Test'
+  inputs:
+    filePath: 'build.ps1'
+    arguments: '-Config Test -VersionMinor $(VersionMinor) -VersionPatch $(Build.BuildNumber) -Clean $True'
+    pwsh: true
+
+- task: CopyFiles@2
+  displayName: 'Copy Test Files'
+  inputs:
+    SourceFolder: '$(agent.builddirectory)'
+    Contents: '**\*.vsix'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    CleanTargetFolder: true
+    flattenFolders: true
+
+- task: PowerShell@2
+  displayName: 'Build Prod'
+  inputs:
+    filePath: 'build.ps1'
+    arguments: '-Config Prod -VersionMinor $(VersionMinor) -VersionPatch $(Build.BuildNumber) -Clean $False'
+    pwsh: true
+
+- task: CopyFiles@2
+  displayName: 'Copy Prod Files'
+  inputs:
+    SourceFolder: '$(agent.builddirectory)'
+    Contents: '**\*.vsix'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifacts'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: PowerShell@2
+  displayName: 'Publish Test Version to MarketPlace'
+  inputs:
+    targetType: 'inline'
+    script: |
+      $files = get-childitem DataThirstLtd.dataThirstTesting*.vsix
+      $filename = $files.name
+      &tfx extension publish --vsix $filename --token $(Token) --share-with datathirst --auth-type pat
+    pwsh: true
+    workingDirectory: '$(build.artifactstagingdirectory)'
