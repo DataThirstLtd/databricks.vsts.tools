@@ -18,6 +18,9 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
+- task: Npm@1
+  inputs:
+    command: 'install'
 - task: PowerShell@2
   displayName: 'Build Test'
   inputs:
