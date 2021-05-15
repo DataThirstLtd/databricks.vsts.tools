@@ -121,7 +121,7 @@
             "label": "Source files path",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Root path of the fiiles to deploy (will include subfolders)"
+            "helpMarkDown": "Root path of the files to deploy (will include subfolders)"
         },
         {
             "name": "databricksPath",
