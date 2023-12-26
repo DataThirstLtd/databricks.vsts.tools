@@ -1,5 +1,8 @@
+# DEPRECATED
 
-# Deploying to Databricks
+**This code is no longer maintained.**
+
+## Deploying to Databricks
 
 This extension has a set of tasks to help with your CI/CD deployments if you are using Notebooks, Python, jars or Scala. These tools are based on the PowerShell module [azure.databricks.cicd.tools](https://github.com/DataThirstLtd/azure.databricks.cicd.tools) available through PSGallery. The module has much more functionality if you require it.
 
